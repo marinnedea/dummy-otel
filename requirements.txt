@@ -6,4 +6,3 @@ opentelemetry-instrumentation
 opentelemetry-instrumentation-flask
 opentelemetry-instrumentation-requests
 opentelemetry-instrumentation-logging
-opentelemetry-instrumentation-logging-utils
