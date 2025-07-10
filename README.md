@@ -99,7 +99,7 @@ spec:
     spec:
       containers:
         - name: dummy-otel
-          image: ghcr.io/youruser/dummy-otel:arm64
+          image: ghcr.io/marinnedea/dummy-otel:latest
           ports:
             - containerPort: 8000
           env:
