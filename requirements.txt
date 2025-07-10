@@ -6,3 +6,4 @@ opentelemetry-exporter-otlp-proto-grpc
 opentelemetry-instrumentation
 opentelemetry-instrumentation-flask
 opentelemetry-instrumentation-requests
+requests
