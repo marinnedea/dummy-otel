@@ -1,9 +1,9 @@
 flask
-prometheus_client
-opentelemetry-api
+requests
 opentelemetry-sdk
-opentelemetry-exporter-otlp-proto-grpc
+opentelemetry-exporter-otlp
 opentelemetry-instrumentation
 opentelemetry-instrumentation-flask
 opentelemetry-instrumentation-requests
-requests
+opentelemetry-instrumentation-logging
+opentelemetry-instrumentation-logging-utils
