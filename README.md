@@ -2,15 +2,15 @@
 
 A minimal Python Flask app that emits:
 
-- ✅ OpenTelemetry **traces** (via OTLP gRPC)
-- ✅ Prometheus **metrics** at `/metrics`
-- ✅ Structured **logs** to stdout
+- OpenTelemetry **traces** (sent via OTLP/gRPC to the endpoint specified in OTEL_EXPORTER_OTLP_ENDPOINT)
+- Prometheus **metrics** at `/metrics`
+- Structured **logs** to stdout
 
 Built for **Kubernetes observability pipelines** with **Grafana Alloy** or any OTLP-compatible collector.
 
 ---
 
-## 🛠 Requirements
+## Requirements
 
 You must have **Grafana Alloy** (or any OTLP-compatible receiver) running and accessible at the configured endpoint.
 
@@ -26,13 +26,13 @@ Alloy must support:
 
 ---
 
-## 📦 Releases
+## Releases
 
 [![GitHub release](https://img.shields.io/github/v/release/marinnedea/dummy-otel)](https://github.com/marinnedea/dummy-otel/releases)
 
 Prebuilt multi-architecture Docker images are available on GitHub Container Registry (GHCR).
 
-## 🚀 Usage
+## Usage
 
 ### 🐳 Run with Docker
 
@@ -43,24 +43,16 @@ docker run -p 8000:8000 \
   ghcr.io/marinnedea/dummy-otel:latest
 ```
 
-🔄 Platforms Supported
+Platforms Supported
 - linux/amd64
 - linux/arm64
 
-📥 Pull Specific Version
+Pull Specific Version
 ```bash
 docker pull ghcr.io/marinnedea/dummy-otel:v1.0.0
 ```
 
-📤 Emit Telemetry
-
-Once running, this app will emit:
-- Logs: to stdout
-- Metrics: available at http://localhost:8000/metrics (Prometheus format)
-- Traces: sent via OTLP/gRPC to the endpoint specified in OTEL_EXPORTER_OTLP_ENDPOINT
-
-
-### 🔧 Build & Run Locally
+### Build & Run Locally
 
 ```bash
 docker build -t dummy-otel .
@@ -76,7 +68,7 @@ curl http://localhost:8000
 curl http://localhost:8000/metrics
 ```
 
-## 🧩 Deploy to Kubernetes
+## Deploy to Kubernetes
 
 Use a Deployment like this:
 ```yaml
@@ -109,24 +101,17 @@ spec:
               value: grpc
 ```
 
-## 📊 Output
-
-   - GET / → Triggers a trace span and logs a message
-   - GET /metrics → Exposes Prometheus metrics
-   - Stdout logs → include trace IDs for correlation (visible in Grafana Cloud if logs are enabled)
-
-## 🏁 Status
+## Status
 
 Designed and tested on:
 
-  - ✅ Raspberry Pi / ARM64
-  - ✅ K3s and Kubernetes
-  - ✅ Grafana Alloy and Grafana Cloud
+  - Raspberry Pi 5/ ARM64
+  - K3s and Kubernetes
+  - Grafana Alloy and Grafana Cloud
 
-## 🔗 Related Projects
+## Related Projects
 
   - [OpenTelemetry Python SDK](https://opentelemetry.io/docs/instrumentation/python/)
   - [Prometheus Python client](https://github.com/prometheus/client_python)
   - [Grafana Alloy](https://grafana.com/docs/alloy/)
-
 
