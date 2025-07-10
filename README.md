@@ -27,6 +27,37 @@ Alloy must support:
 ---
 
 ## 🚀 Usage
+## 📦 Releases
+
+[![GitHub release](https://img.shields.io/github/v/release/marinnedea/dummy-otel)](https://github.com/marinnedea/dummy-otel/releases)
+
+Prebuilt multi-architecture Docker images are available on GitHub Container Registry (GHCR).
+
+### 🐳 Run with Docker
+
+```bash
+docker run -p 8000:8000 \
+  -e OTEL_EXPORTER_OTLP_ENDPOINT=http://your-otel-collector:4317 \
+  -e OTEL_EXPORTER_OTLP_PROTOCOL=grpc \
+  ghcr.io/marinnedea/dummy-otel:latest
+```
+
+🔄 Platforms Supported
+- linux/amd64
+- linux/arm64
+
+📥 Pull Specific Version
+```bash
+docker pull ghcr.io/marinnedea/dummy-otel:v1.0.0
+```
+
+📤 Emit Telemetry
+
+Once running, this app will emit:
+- Logs: to stdout
+- Metrics: available at http://localhost:8000/metrics (Prometheus format)
+- Traces: sent via OTLP/gRPC to the endpoint specified in OTEL_EXPORTER_OTLP_ENDPOINT
+
 
 ### 🔧 Build & Run Locally
 
