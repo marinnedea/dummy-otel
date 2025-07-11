@@ -3,6 +3,9 @@
 
 A simple OTEL-instrumented Python Flask app that generates traces, metrics, and logs for observability testing.
 
+<img width="3546" height="1508" alt="image" src="https://github.com/user-attachments/assets/916e6bde-982a-4751-9fef-efe753a6911f" />
+
+
 ## Features
 
 - OpenTelemetry tracing via OTLP gRPC
