@@ -94,8 +94,17 @@ chmod +x $HOME/dummy-otel/poll-dummy-otel.sh
 ```
 
 Then create a cronjob for it:
+```bash
+crontab -e
+```
+
+> [!WARNING]
+> Make sure to replace `kubectl` with the full path (e.g., `/usr/local/bin/kubectl`) when used in cron jobs.
+> Also, cron doesn’t run your shell profile (like `.bashrc` or `.profile`), so variables like `$HOME` may not be defined the way you expect in `crontab -e`.
+> Use the full absolute path instead of `$HOME`!
+
 ```vi
-* * * * * $HOME/dummy-otel/poll-dummy-otel.sh >> /path/to/dummy-otel/poll.log 2>&1
+* * * * * /home/your_user/dummy-otel/poll-dummy-otel.sh >> /path/to/dummy-otel/poll.log 2>&1
 ```
 
 ## Deploy to Kubernetes
