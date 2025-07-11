@@ -3,9 +3,6 @@
 
 A simple OTEL-instrumented Python Flask app that generates traces, metrics, and logs for observability testing.
 
-<img width="3546" height="1508" alt="image" src="https://github.com/user-attachments/assets/916e6bde-982a-4751-9fef-efe753a6911f" />
-
-
 ## Features
 
 - OpenTelemetry tracing via OTLP gRPC
@@ -148,6 +145,19 @@ To be used with:
   - Grafana Tempo
   - Grafana Loki
   - Prometheus-compatible backend (via OTLP)
+
+## Results:
+
+Metrics:
+
+<img width="3566" height="1976" alt="image" src="https://github.com/user-attachments/assets/eff66db8-741b-453d-9801-69fbdd02b33d" />
+
+Logs:
+
+<img width="3566" height="1976" alt="image" src="https://github.com/user-attachments/assets/63f90ff8-bf35-4598-8bcb-264e6985d4eb" />
+
+Traces:
+<img width="3566" height="1976" alt="image" src="https://github.com/user-attachments/assets/4805dfcf-a8ad-42ba-944d-ba7a2cc0c3e5" />
 
 
 ## Related Projects
