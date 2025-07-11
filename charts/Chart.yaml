@@ -1,0 +1,6 @@
+apiVersion: v2
+name: dummy-otel
+description: A dummy OTEL app with metrics, logs, and traces
+type: application
+version: 1.2.0
+appVersion: "1.2.0"

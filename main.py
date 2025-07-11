@@ -107,5 +107,10 @@ def generate_everything():
         otel_logger.info(f"Downstream call returned: {r.status_code}")
         return f"Trace, metric, and log generated after {delay:.2f}s"
 
+@app.route("/health")
+def health():
+    return "OK", 200
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000)
