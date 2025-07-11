@@ -86,6 +86,12 @@ curl http://localhost:8000
 curl http://localhost:8000/metrics
 ```
 
+Or use the included `poll-dummy-otel.sh` script into a cronjob to run every minute and append output to a local log file.
+```vi
+* * * * * /path/to/dummy-otel/poll-dummy-otel.sh >> /path/to/dummy-otel/poll.log 2>&1
+```
+Please make sure to replace `/path/to/` with the actual path from your system, e.g. `/home/your_user/`.
+
 ## Deploy to Kubernetes
 
 Use a Deployment like this:
