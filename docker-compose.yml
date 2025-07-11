@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   dummy-otel:
-    image: ghcr.io/marinnedea/dummy-otel:v1.2.0
+    image: ghcr.io/marinnedea/dummy-otel:v1.2.1
     ports:
       - "8000:8000"
     environment:
