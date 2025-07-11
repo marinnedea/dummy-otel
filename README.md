@@ -14,10 +14,9 @@ A simple OTEL-instrumented Python Flask app that generates traces, metrics, and 
 
 | Path        | Description                              |
 |-------------|------------------------------------------|
-| `/`         | Root message                             |
+| `/`         | Root message   - Randomly fails (HTTP 500 or timeout)                             |
 | `/0/`       | Emits OTEL trace, metric & log           |
 | `/health`   | Health check (`200 OK`)                  |
-| `/fail`     | Randomly fails (HTTP 500 or timeout)     |
 
 
 ## The `/0/` endpoint generates:
