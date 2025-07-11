@@ -13,16 +13,10 @@ from opentelemetry.sdk.metrics.export import PeriodicExportingMetricReader
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
 from opentelemetry.exporter.otlp.proto.grpc.metric_exporter import OTLPMetricExporter
 
-# Logging SDK
-#from opentelemetry.sdk._logs import LoggerProvider, LoggingHandler
-#from opentelemetry.sdk._logs.export import BatchLogRecordProcessor
-#from opentelemetry.exporter.otlp.proto.grpc._log_exporter import OTLPLogExporter
-#from opentelemetry._logs import set_logger_provider, get_logger
-
-from opentelemetry.sdk.logs import LoggerProvider
-from opentelemetry.sdk.logs.export import BatchLogRecordProcessor
+from opentelemetry.sdk._logs import LoggerProvider, LoggingHandler
+from opentelemetry.sdk._logs.export import BatchLogRecordProcessor
 from opentelemetry.exporter.otlp.proto.grpc._log_exporter import OTLPLogExporter
-from opentelemetry.sdk._logs import LoggingHandler, set_logger_provider
+from opentelemetry._logs import set_logger_provider, get_logger
 
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.requests import RequestsInstrumentor
@@ -63,20 +57,13 @@ request_counter = meter.create_counter(
 )
 
 # Logging
-#logger_provider = LoggerProvider(resource=resource)
-#set_logger_provider(logger_provider)
-#logger_provider.add_log_record_processor(
-#    BatchLogRecordProcessor(OTLPLogExporter(endpoint=otlp_endpoint, insecure=True))
-#)
-#otel_logger = get_logger(__name__)
-#otel_logger.setLevel(logging.INFO)
-#otel_logger.addHandler(LoggingHandler(logger_provider=logger_provider))
-
-# Logging
 log_exporter = OTLPLogExporter(endpoint=otlp_endpoint, insecure=True)
 logger_provider = LoggerProvider(resource=resource)
 logger_provider.add_log_record_processor(BatchLogRecordProcessor(log_exporter))
 set_logger_provider(logger_provider)
+
+otel_logger = get_logger(__name__)
+otel_logger.addHandler(LoggingHandler(level=logging.INFO, logger_provider=logger_provider))
 
 # Standard Python logger
 otel_logger = logging.getLogger("dummy-otel")
