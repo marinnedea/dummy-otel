@@ -1,8 +1,4 @@
-## Releases
-
-[![GitHub release](https://img.shields.io/github/v/release/marinnedea/dummy-otel)](https://github.com/marinnedea/dummy-otel/releases)
-
-# dummy-otel
+# dummy-otel - [![GitHub release](https://img.shields.io/github/v/release/marinnedea/dummy-otel)](https://github.com/marinnedea/dummy-otel/releases)
 
 A minimal Python Flask app that emits:
 
