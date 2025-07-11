@@ -6,25 +6,31 @@ from flask import Flask
 
 from opentelemetry import trace, metrics
 from opentelemetry.sdk.resources import Resource
+
+# Tracing
 from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.metrics import MeterProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
-from opentelemetry.sdk.metrics.export import PeriodicExportingMetricReader
 from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
+
+# Metrics
+from opentelemetry.sdk.metrics import MeterProvider
+from opentelemetry.sdk.metrics.export import PeriodicExportingMetricReader
 from opentelemetry.exporter.otlp.proto.grpc.metric_exporter import OTLPMetricExporter
 
+# Logging
 from opentelemetry.sdk._logs import LoggerProvider, LoggingHandler
 from opentelemetry.sdk._logs.export import BatchLogRecordProcessor
 from opentelemetry.exporter.otlp.proto.grpc._log_exporter import OTLPLogExporter
-from opentelemetry._logs import set_logger_provider, get_logger
+from opentelemetry._logs import set_logger_provider
 
+# Instrumentation
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
 from opentelemetry.instrumentation.requests import RequestsInstrumentor
 
 # OTLP endpoint
 otlp_endpoint = os.getenv("OTEL_EXPORTER_OTLP_ENDPOINT", "http://localhost:4317")
 
-# Common resource
+# Resource
 resource = Resource.create({
     "service.name": "dummy-otel",
     "service.namespace": "dummy-observability",
@@ -62,16 +68,10 @@ logger_provider = LoggerProvider(resource=resource)
 logger_provider.add_log_record_processor(BatchLogRecordProcessor(log_exporter))
 set_logger_provider(logger_provider)
 
-otel_logger = get_logger(__name__)
-otel_logger.addHandler(LoggingHandler(level=logging.INFO, logger_provider=logger_provider))
-
-# Standard Python logger
+# Use standard logging.Logger with OTEL LoggingHandler
 otel_logger = logging.getLogger("dummy-otel")
 otel_logger.setLevel(logging.INFO)
-otel_logger.addHandler(LoggingHandler(level=logging.INFO))
-
-
-
+otel_logger.addHandler(LoggingHandler(level=logging.INFO, logger_provider=logger_provider))
 
 # Flask App
 app = Flask(__name__)
@@ -95,4 +95,3 @@ def generate_everything():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000)
-
