@@ -1,11 +1,31 @@
 [![GitHub release](https://img.shields.io/github/v/release/marinnedea/dummy-otel)](https://github.com/marinnedea/dummy-otel/releases) 
 # dummy-otel
 
-A minimal Python Flask app that emits:
+A simple OTEL-instrumented Python Flask app that generates traces, metrics, and logs for observability testing.
 
-- OpenTelemetry **traces** (sent via OTLP/gRPC to the endpoint specified in OTEL_EXPORTER_OTLP_ENDPOINT)
-- Prometheus **metrics** at `/metrics`
-- Structured **logs** to stdout
+## Features
+
+- OpenTelemetry tracing via OTLP gRPC
+- Metrics exported to Prometheus-compatible OTLP endpoint
+- Structured logs exported via OTLP
+- Exposes several endpoints for testing behavior
+
+## API Endpoints
+
+| Path        | Description                              |
+|-------------|------------------------------------------|
+| `/`         | Root message                             |
+| `/0/`       | Emits OTEL trace, metric & log           |
+| `/health`   | Health check (`200 OK`)                  |
+| `/fail`     | Randomly fails (HTTP 500 or timeout)     |
+
+
+## The `/0/` endpoint generates:
+
+- A trace span (`generate-trace-span`)
+- Metric: `dummy_requests_total`
+- Log messages via OTLP
+
 
 Built for **Kubernetes observability pipelines** with **Grafana Alloy** or any OTLP-compatible collector.
 
@@ -100,13 +120,21 @@ spec:
               value: grpc
 ```
 
+
+
 ## Status
 
 Designed and tested on:
-
   - Raspberry Pi 5/ ARM64
   - K3s and Kubernetes
   - Grafana Alloy and Grafana Cloud
+
+To be used with:
+  - Grafana Alloy
+  - Grafana Tempo
+  - Grafana Loki
+  - Prometheus-compatible backend (via OTLP)
+
 
 ## Related Projects
 
