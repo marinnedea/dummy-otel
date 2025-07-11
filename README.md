@@ -1,3 +1,7 @@
+## Releases
+
+[![GitHub release](https://img.shields.io/github/v/release/marinnedea/dummy-otel)](https://github.com/marinnedea/dummy-otel/releases)
+
 # dummy-otel
 
 A minimal Python Flask app that emits:
@@ -26,15 +30,13 @@ Alloy must support:
 
 ---
 
-## Releases
-
-[![GitHub release](https://img.shields.io/github/v/release/marinnedea/dummy-otel)](https://github.com/marinnedea/dummy-otel/releases)
-
-Prebuilt multi-architecture Docker images are available on GitHub Container Registry (GHCR).
-
 ## Usage
 
 ### 🐳 Run with Docker
+
+Prebuilt multi-architecture Docker images are available on GitHub Container Registry (GHCR):
+- https://github.com/marinnedea/dummy-otel/pkgs/container/dummy-otel
+
 
 ```bash
 docker run -p 8000:8000 \
@@ -49,7 +51,7 @@ Platforms Supported
 
 Pull Specific Version
 ```bash
-docker pull ghcr.io/marinnedea/dummy-otel:v1.0.0
+docker pull ghcr.io/marinnedea/dummy-otel:latest
 ```
 
 ### Build & Run Locally
