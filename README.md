@@ -90,13 +90,13 @@ Or use the included `poll-dummy-otel.sh` script into a cronjob to run every minu
 
 Make it executable:
 ```bash
-chmod +x /path/to/dummy-otel/poll-dummy-otel.sh
+chmod +x $HOME/dummy-otel/poll-dummy-otel.sh
 ```
+
 Then create a cronjob for it:
 ```vi
-* * * * * /path/to/dummy-otel/poll-dummy-otel.sh >> /path/to/dummy-otel/poll.log 2>&1
+* * * * * $HOME/dummy-otel/poll-dummy-otel.sh >> /path/to/dummy-otel/poll.log 2>&1
 ```
-Please make sure to replace `/path/to/` with the actual path from your system, e.g. `/home/your_user/`.
 
 ## Deploy to Kubernetes
 
