@@ -90,6 +90,12 @@ curl http://localhost:8000/metrics
 ```
 
 Or use the included `poll-dummy-otel.sh` script into a cronjob to run every minute and append output to a local log file.
+
+Make it executable:
+```bash
+chmod +x /path/to/dummy-otel/poll-dummy-otel.sh
+```
+Then create a cronjob for it:
 ```vi
 * * * * * /path/to/dummy-otel/poll-dummy-otel.sh >> /path/to/dummy-otel/poll.log 2>&1
 ```
