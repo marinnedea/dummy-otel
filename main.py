@@ -63,7 +63,7 @@ set_logger_provider(logger_provider)
 logger_provider.add_log_record_processor(
     BatchLogRecordProcessor(OTLPLogExporter(endpoint=otlp_endpoint, insecure=True))
 )
-otel_logger = get_logger(__name__, version="1.1.3")
+otel_logger = get_logger(__name__)
 otel_logger.setLevel(logging.INFO)
 otel_logger.addHandler(LoggingHandler(logger_provider=logger_provider))
 
