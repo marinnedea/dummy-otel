@@ -2,6 +2,7 @@ import os
 import time
 import logging
 import requests
+import random
 from flask import Flask
 
 from opentelemetry import trace, metrics
@@ -86,12 +87,25 @@ def index():
 @app.route("/0/")
 def generate_everything():
     otel_logger.info("Handling /0/ request")
-    with tracer.start_as_current_span("generate-trace-span"):
+
+    with tracer.start_as_current_span("generate-trace-span") as span:
         request_counter.add(1, {"endpoint": "/0/"})
+
+        # Simulate variable response time
+        delay = random.uniform(0.1, 1.0)
+        time.sleep(delay)
+
+        # Simulate a random failure
+        if random.random() < 0.3:  # 30% chance of failure
+            error_msg = f"Simulated failure after {delay:.2f}s"
+            otel_logger.error(error_msg)
+            span.set_status(trace.Status(trace.StatusCode.ERROR, error_msg))
+            return "Internal Server Error", 500
+
+        # Normal behavior
         r = requests.get("https://httpbin.org/status/200")
         otel_logger.info(f"Downstream call returned: {r.status_code}")
-        time.sleep(0.1)
-    return "Trace, metric, and log generated!"
+        return f"Trace, metric, and log generated after {delay:.2f}s"
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8000)
